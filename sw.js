@@ -2,6 +2,7 @@ var CACHE_NAME = 'restaurant-reviews-cache-v1';
 var urlsToCache = [
   './',
   './index.html',
+  './restaurant.html',
   './favicon.ico',
   './css/styles.css',
   './data/restaurants.json',
@@ -33,7 +34,7 @@ self.addEventListener('install', function(event) {
 
 self.addEventListener('fetch', function(event) {
   event.respondWith(
-    caches.match(event.request)
+    caches.match(event.request, {'ignoreSearch': true})
       .then(function(response) {
         // Cache hit - return response
         if (response) {
